@@ -1,0 +1,80 @@
+Copyright (c) 2011 Socialize, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions: 
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.  
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.  
+
+
+
+GitHub provides the ability to connect git commits with active stories on
+pivotal. The goal of this project is to provide some simple git commit hooks
+to help make this connection easier
+
+
+
+
+### active_stories.py ###
+
+Pivotal.py is meant to be used as prepare-commit-msg for git. It connects to
+pivotal, gets all the stories that match your provided filter, and adds the
+story numbers to the git commit. 
+
+These stories are added in the form:
+
+[#<NUMBER> #<NUBMER>] for each story number matching your filter. 
+
+
+SET UP:
+In order to setup your repository to work with this script, you need to
+perform the following steps:
+
+1) Install GitPython:
+sudo easy_install gitpython
+
+
+2) Create the following local git settings:
+git config --local pivotal.token 'YOUR PIVOTAL ACCESS TOKEN'
+git config --local pivotal.filter 'YOUR FILTER' 
+git config --local pivotal.projectid 'YOUR PROJECT ID'
+
+An example filter is:
+
+mywork:AA current_state:started 
+
+Where AA is your initials in the pivotal system. This filter will return all
+stories that you are working on that are in a started state. 
+
+3) Make sure git can get your path. On my Mac OS X system I needed to create a
+symbolic link:
+
+sudo ln -s /Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/site-packages/ /Library/Python/2.7/site-packages
+
+4) copy the file to "<REPOSITORY_BASE>/.git/hooks/prepare-commit-msg" and make
+it executable. 
+
+
+After the setup every time you create a commit the script will run and prepend
+the ticket numbers to your commit message. 
+
+
+###########################
+
+
+
+ 
+
+
