@@ -29,9 +29,9 @@ to help make this connection easier
 
 ### active_stories.py ###
 
-Pivotal.py is meant to be used as prepare-commit-msg for git. It connects to
-pivotal, gets all the stories that match your provided filter, and adds the
-story numbers to the git commit. 
+active_stories.py is meant to be used as prepare-commit-msg for git. It
+connects to pivotal, gets all the stories that match your provided filter, and
+adds the story numbers to the git commit. 
 
 These stories are added in the form:
 
