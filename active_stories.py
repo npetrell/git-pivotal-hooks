@@ -87,8 +87,8 @@ if __name__ == '__main__':
 
             i += 1
     else:
-        print "Error: No started stories found!"
-        sys.exit(1)
+        print "No started stories found. Not adding anything to commit message" 
+        sys.exit()
 
 
     # Git does not support interactive shells in hooks so I have to just assume the commit is for all of them
